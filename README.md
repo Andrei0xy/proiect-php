@@ -1,1 +1,2 @@
-# proiect-php
+# proiect-casa productie muzica
+Proiectul va prezenta detaliile specifice unei case de discuri. Pentru a realiza acest lucru, se va utiliza o baza de date care memoreaza informatii despre artistii asociati casei de discuri, albumele lansate de acestia si melodiile pe care le include fiecare. De asemenea, baza de date dispune si de o tabela care stocheaza utilizatorii si rolurile lor, precum si achizitiile pe care le fac acestia de pe magazinul site-ului.
