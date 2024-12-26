@@ -77,6 +77,7 @@ INSERT INTO user_roles (name) VALUES ('guest');
 
 INSERT INTO users (first_name, last_name, email, pwd, role_id) VALUES ('admin', 'admin', 'admin@admin.com', 'admin', 1);
 INSERT INTO users (first_name, last_name, email, pwd, role_id) VALUES ('user', 'user', 'user@user.com', 'user', 2);
+INSERT INTO users (first_name, last_name, email, pwd, role_id) VALUES ('Andrei','Moisa','andrei@moisa.com',password_hash('BaDcFe',PASSWORD_DEFAULT),1);
 
 INSERT INTO artists (name, join_date,origin, description) VALUES ('Eminem','1999-10-12','Detroit','Marshall Bruce Mathers III (born October 17, 1972), better known by his stage name Eminem 
 and by his alter ego Slim Shady, is an American rapper, record producer, songwriter and actor.');
