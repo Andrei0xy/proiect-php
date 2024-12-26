@@ -3,11 +3,6 @@ require_once "app/models/User.php";
 
 class loginController{
     public static function log(){
-        // if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
-        //     $redirect = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-        //     header('Location: ' . $redirect);
-        //     exit();
-        // }
         
         if (isset($_SESSION["request_user"])){
             header("Location: /casa_productie_muzica");
