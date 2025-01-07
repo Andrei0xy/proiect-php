@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>New artist</h1>
-    <form action="create" method="post">
+    <form action="create" method="post" enctype="multipart/form-data">
     <input type="hidden" name="artist_post" value="1">
     <p> <label for="name">Name</label>
         <input type="text" name="name" id="name" value=" <?=$_SESSION["create_artist"]["artist"]['name'] ?>">
@@ -46,6 +46,17 @@
     <p><label for="description">Description</label>
         <input type="text" name="description" id="description" value=" <?=$_SESSION["create_artist"]["artist"]['description'] ?>">
     </p>
+    <p><label for="image">Image</label>
+        <input type="file" name="file" id="file">
+    </p>
+    <p style="color: red;">
+            <?php 
+            if (isset($_SESSION['create_artist']["errors"]['file_error'])):
+                echo $_SESSION['create_artist']["errors"]['file_error'];
+                unset($_SESSION['create_artist']["errors"]['file_error']);
+                endif;
+            ?>
+        </p>
         <input type="submit" value="Create" name="create">
     </form>
 </body>

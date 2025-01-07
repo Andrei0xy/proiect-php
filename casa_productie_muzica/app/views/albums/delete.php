@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/picnic">
-    <title>Delete Artist</title>
+    <title>Delete Album</title>
 </head>
 <body>
 <table>
     <tr>
-    <th><h2>Are you sure you want to delete this artist? </h2></th>
+    <th><h2>Are you sure you want to delete this album? </h2></th>
 </tr>
 <tr>
     <td>

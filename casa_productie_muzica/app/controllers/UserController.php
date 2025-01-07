@@ -1,5 +1,7 @@
 <?php
 require_once "app/models/User.php";
+// require_once ('vendor/autoload.php');
+require 'tcpdf/tcpdf.php';
 
 class UserController{
     public static function index() {
@@ -146,6 +148,72 @@ class UserController{
         }
         $roles  = UserRole::getAllRoles();
         require_once "app/views/users/create.php";
+    }
+
+    public function filterUserData(&$str) {
+        $str = preg_replace("/\t/", "\\t", $str);
+        $str = preg_replace("/\r?\n/", "\\n", $str);
+        if(strstr($str, '"')) $str = '"' . str_replace('"', '""', $str) . '"';
+    }
+
+    public static function excel_export(){
+        $file_name = "users_data.xls";
+        header("Content-Disposition: attachment; filename=\"$file_name\"");
+        header("Content-Type: application/vnd.ms-excel");
+        $fields=array('ID','FIRST NAME','LAST NAME','EMAIL','ROLE ID');
+        $excel=implode("\t",array_values($fields))."\n";
+        $users=User::getAllUsers();
+        foreach($users as $user){
+            $line=array($user['id'],$user['first_name'],$user['last_name'],$user['email'],$user['role_id']);
+            // array_walk($line,'filterUserData');
+            $excel .= implode("\t", array_values($line)). "\n";
+        }
+
+        echo $excel;
+        exit();
+    }
+    public static function word_export(){
+        $file_name = "users_data.doc";
+        header("Content-Disposition: attachment; filename=\"$file_name\"");
+        header("Content-Type: application/vnd.ms-word");
+        $fields=array('ID','FIRST NAME','LAST NAME','EMAIL','ROLE ID');
+        $doc=implode("\t",array_values($fields))."\n";
+        $users=User::getAllUsers();
+        foreach($users as $user){
+            $line=array($user['id'],$user['first_name'],$user['last_name'],$user['email'],$user['role_id']);
+            // array_walk($line,'filterUserData');
+            $doc .= implode("\t", array_values($line)). "\n";
+        }
+
+        echo $doc;
+        exit();
+    }
+    public static function pdf_export(){
+        $pdf = new TCPDF();
+        $pdf->AddPage();
+        $pdf->SetFont('helvetica', '', 12);
+        $html = '<h1 style="text-align: center;">User Data</h1>';
+        $html .= '<table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>';
+        $users=User::getAllUsers();
+        foreach($users as $user){
+            $html .= '<tr>
+            <td>' . $user['first_name'] . '</td>
+            <td>' . $user['last_name'] . '</td>
+            <td>' . $user['email'] . '</td>
+            <td> Show | Edit | Delete</td>
+            </tr>';
+        }
+        $html .= '</table>';
+        $pdf->writeHTML($html, true, false, true, false, '');
+
+        $pdf->Output('users.pdf', 'D');
+        exit;
     }
 
 }

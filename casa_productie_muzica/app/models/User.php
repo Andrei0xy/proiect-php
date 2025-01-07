@@ -30,6 +30,18 @@ class User {
         $stmt->execute(array(":email" => $email));
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public static function getNames($first_name){
+        global $pdo;
+
+        $sql = "SELECT id
+                FROM users
+                WHERE first_name= :first_name";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(array(":first_name" => $first_name));
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public static function editUser($user_id, $first_name, $last_name, $email) {
         global $pdo;
 

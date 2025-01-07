@@ -11,6 +11,9 @@
 <?php  if ($create_permission){
     echo ("<button><a href='create'>Create</a></button>");
 } ?>
+<a href="export_excel" class="btn btn-success"><i class="dwn"></i>Export excel</a> |
+<a href="export_word" class="btn btn-success"><i class="dwn"></i>Export word</a> |
+<a href="export_pdf" class="btn btn-success"><i class="dwn"></i>Export pdf</a>
 <!-- // <button><a href="create">Create</a></button> -->
 <table>
     <tr>
